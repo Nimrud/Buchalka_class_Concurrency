@@ -21,6 +21,7 @@ public class Main {
                 System.out.println(ANSI_GREEN + "Anonymous class thread");
             }
         }.start();
+        anotherThread.interrupt();  // przerywa wątek (kod w klasie AnotherThread)
 
         System.out.println(ANSI_PURPLE + "Main thread 2");
     }
