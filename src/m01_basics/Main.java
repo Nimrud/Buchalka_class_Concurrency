@@ -11,7 +11,10 @@ public class Main {
         System.out.println(ANSI_PURPLE + "Main thread");
 
         Thread anotherThread = new AnotherThread();
+        anotherThread.setName("= Another Thread =");
         anotherThread.start();
+        // WAŻNE! Używamy start(), a nie run() !
+        // jeśli użyjemy run(), to otrzymamy inny wynik niż po użyciu start()
 
         new Thread(){
             public void run(){
@@ -19,6 +22,6 @@ public class Main {
             }
         }.start();
 
-        System.out.println("Main thread 2");
+        System.out.println(ANSI_PURPLE + "Main thread 2");
     }
 }
