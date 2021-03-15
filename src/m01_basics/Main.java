@@ -19,6 +19,6 @@ public class Main {
             }
         }.start();
 
-        System.out.println("Main thread 2");
+        System.out.println(ANSI_PURPLE + "Main thread 2");
     }
 }
