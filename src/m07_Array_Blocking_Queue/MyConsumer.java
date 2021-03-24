@@ -20,11 +20,11 @@ public class MyConsumer implements Runnable {
                 if (buffer.isEmpty()) {
                     continue;
                 }
-                if (buffer.peek().equals(EOF)) {
+                if (buffer.peek().equals(EOF)) {    // <- peek()
                     System.out.println(color + "Exiting");
                     break;
                 } else {
-                    System.out.println(color + "Removed " + buffer.take());
+                    System.out.println(color + "Removed " + buffer.take());  // <- take()
                 }
             } catch (InterruptedException e){
                 System.out.println("Thread interrupted");
