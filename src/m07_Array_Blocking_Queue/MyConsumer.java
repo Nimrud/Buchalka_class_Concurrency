@@ -16,18 +16,20 @@ public class MyConsumer implements Runnable {
     @Override
     public void run() {
         while (true) {
-            try {
-                if (buffer.isEmpty()) {
-                    continue;
+            synchronized (buffer){
+                try {
+                    if (buffer.isEmpty()) {
+                        continue;
+                    }
+                    if (buffer.peek().equals(EOF)) {    // <- peek() nie potrzebuje wskazania konkretnego elementu, bo jest typu First In, First Out
+                        System.out.println(color + "Exiting");
+                        break;
+                    } else {
+                        System.out.println(color + "Removed " + buffer.take());  // <- take()
+                    }
+                } catch (InterruptedException e){
+                    System.out.println("Thread interrupted");
                 }
-                if (buffer.peek().equals(EOF)) {    // <- peek()
-                    System.out.println(color + "Exiting");
-                    break;
-                } else {
-                    System.out.println(color + "Removed " + buffer.take());  // <- take()
-                }
-            } catch (InterruptedException e){
-                System.out.println("Thread interrupted");
             }
         }
     }
