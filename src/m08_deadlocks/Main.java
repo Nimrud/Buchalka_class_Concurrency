@@ -50,4 +50,7 @@ public class Main {
     }
 }
 
+// ROZWIĄZANIE 1: Oba wątki powinny pozyskiwać locki w tej samej kolejności
+// ROZWIĄZANIE 2: Użycie obiektu Lock zamiast bloków zsynchronizowanych - za pomocą metody: lock1.tryLock()
+
 
