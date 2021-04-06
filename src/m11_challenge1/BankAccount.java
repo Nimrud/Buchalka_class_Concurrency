@@ -17,7 +17,24 @@ public class BankAccount {
         balance -= amount;
     }
 
+// synchronizacja metody za pomocą 'this':
+//    public void withdraw(double amount){
+//        synchronized (this){
+//            balance -= amount;
+//        }
+//    }
+
     public double getBalance() {
         return balance;
+    }
+
+    // poniższe metody nie potrzebują synchronizacji ani locka, bo tylko odczytują dane
+    // używamy locka lub synchronizacji tylko w krytycznych częściach kodu!
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void printAccountNumber(){
+        System.out.println("Account number = " + accountNumber);
     }
 }
