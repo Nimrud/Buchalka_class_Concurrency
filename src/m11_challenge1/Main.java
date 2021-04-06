@@ -17,20 +17,30 @@ public class Main {
         Thread person1 = new Thread(new Runnable() {
             @Override
             public void run() {
-                account.deposit(300, lock);
-                System.out.println("Balance (after op1): " + account.getBalance());
-                account.withdraw(50, lock);
-                System.out.println("Balance (after op2): " + account.getBalance());
+                lock.lock();
+                try{
+                    account.deposit(300);
+                    System.out.println("Balance (after op1): " + account.getBalance());
+                    account.withdraw(50);
+                    System.out.println("Balance (after op2): " + account.getBalance());
+                } finally {
+                    lock.unlock();
+                }
             }
         });
 
         Thread person2 = new Thread(new Runnable() {
             @Override
             public void run() {
-                account.deposit(203.75, lock);
-                System.out.println("Balance (after op3): " + account.getBalance());
-                account.withdraw(100, lock);
-                System.out.println("Balance (after op4): " + account.getBalance());
+                lock.lock();
+                try{
+                    account.deposit(203.75);
+                    System.out.println("Balance (after op3): " + account.getBalance());
+                    account.withdraw(100);
+                    System.out.println("Balance (after op4): " + account.getBalance());
+                } finally {
+                  lock.unlock();
+                }
             }
         });
 
